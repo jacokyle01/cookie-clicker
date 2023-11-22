@@ -1,5 +1,8 @@
 import { VNode, h } from "snabbdom";
 import CookieCtrl from "./ctrl";
+import renderClock, { Clock } from "./clock";
+
+const clock = new Clock();
 
 const cookieCount = (ctrl: CookieCtrl): VNode => {
 	return h("div#cookie_count", "Cookies: " + ctrl.cookieCount);
@@ -30,11 +33,16 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 	);
 };
 
+const countUp = (clock: Clock) => {
+	return renderClock(clock);
+}
+
 const view = (ctrl: CookieCtrl): VNode => {
 	return h("div#game", [
 		cookieCount(ctrl),
 		cps(ctrl),
 		clicker(ctrl),
+		countUp(clock),
 		buyResources(ctrl),
 	]);
 };
