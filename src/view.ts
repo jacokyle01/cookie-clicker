@@ -19,7 +19,7 @@ const clicker = (ctrl: CookieCtrl): VNode => {
 
 //TODO refactor mapping resources? remove duplicate code
 const buyResources = (ctrl: CookieCtrl): VNode => {
-	return h("div#shop", [
+	return h("div#shop.panel", [
 		h("h3#shop_title", "Shop"),
 		...Object.entries(ctrl.resources).map(([rsc, inv]) => {
 			return h(
@@ -37,7 +37,7 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 };
 
 const buyPowerups = (ctrl: CookieCtrl): VNode => {
-	return h("div#powerups", [
+	return h("div#powerups.panel", [
 		h('h3#powerup_title', 'Powerups'),
 		...Object.entries(ctrl.resources).map(([rsc, inv]) => {
 			const pwrup = inv.powerup;
@@ -52,7 +52,7 @@ const buyPowerups = (ctrl: CookieCtrl): VNode => {
 						: " for " + pwrup.duration + " seconds") +
 					" " +
 					rsc +
-					" powerup costs " +
+					" powerup $" +
 					pwrup.price
 			);
 		}),
@@ -66,7 +66,7 @@ const countUp = (ctrl: CookieCtrl) => {
 
 const inventory = (ctrl: CookieCtrl): VNode => {
 	return h(
-		"div#inventory",
+		"div#inventory.panel",
 		Object.entries(ctrl.resources).map(([rsc, inv]) => {
 			return h("div#" + rsc + "_inventory ", rsc + " " + inv.count);
 		})
@@ -77,7 +77,7 @@ const view = (ctrl: CookieCtrl): VNode => {
 	return h("div#game", [
 		h("div#top", [
 			buyPowerups(ctrl),
-			h("div#cookie-wrap", [
+			h("div#cookie-wrap.panel", [
 				countUp(ctrl),
 				clicker(ctrl),
 				cookieCount(ctrl),
