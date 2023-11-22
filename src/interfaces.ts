@@ -6,4 +6,13 @@ export type Inventory = {
     count: number;
     price: number;
     cps: number 
+    powerup: Powerup;
 } 
+
+export type Status = "Active" | "Idle" | "Cooldown";
+
+export type Powerup = {
+    price: number;
+    status: Status;
+    duration: number;
+}

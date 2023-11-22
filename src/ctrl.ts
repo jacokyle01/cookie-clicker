@@ -1,62 +1,111 @@
-import { Redraw, resourceNames, Inventory } from "./interfaces";
+import { Redraw, resourceNames, Inventory, Powerup } from "./interfaces";
 
 export default class CookieCtrl {
-    cookieCount = 0;
-    tps = 10;
-    elapsedTicks = 0;
-    resources: {[key: string]: Inventory} = {};
+	cookieCount = 0;
+	tps = 10;
+	elapsedTicks = 0;
+	resources: { [key: string]: Inventory } = {};
 
-    constructor(readonly redraw: Redraw) {
-        //TODO: move this to initialization / config class?
-        resourceNames.forEach((resourceName : string, index: number) => {
-            let inventory = {
-                count: 0,
-                price: (index * index * index) * 15 + 10,
-                cps: (index * index) * 15 + 10
-            }
-            this.resources[resourceName] = inventory;
-        })
-    }
+	constructor(readonly redraw: Redraw) {
+		//TODO: move this to initialization / config class?
+		resourceNames.forEach((resourceName: string, index: number) => {
+			let pwrup: Powerup = {
+				price: Math.pow(index + 1, 3) * 100,
+				status: "Idle",
+				duration: 0,
+			};
 
-    clickCookie = (): void => {
-        this.cookieCount++;
-        this.redraw();
-    }
+			let inventory = {
+				count: 0,
+				price: index * index * index * 15 + 10,
+				cps: index * index * 15 + 10,
+				powerup: pwrup,
+			};
+			this.resources[resourceName] = inventory;
+		});
+	}
 
-    canAfford = (resource: string): boolean => {
-        return this.resources[resource].price < this.cookieCount;
-    }
+	clickCookie = (): void => {
+		this.cookieCount++;
+		console.log(this.resources);
+		this.redraw();
+	};
 
-    raisePrice = (resource: string): void => {
-        this.resources[resource].price *= 1.15;
-    }
+	canAfford = (resource: string): boolean => {
+		return this.resources[resource].price < this.cookieCount;
+	};
 
-    buyResource = (resource: string): void => {
-        if (!this.canAfford(resource)) return;
-        this.cookieCount -= this.resources[resource].price;
-        this.resources[resource].count++;
-        this.raisePrice(resource);
-        this.redraw(); 
-    }
+	canAffordPowerup = (resource: string): boolean => {
+		return this.resources[resource].powerup.price < this.cookieCount;
+	};
 
-    cookiesPerSecond = (): number => {
-        let total = 0;
-        for (const key in this.resources) {
-            const entry = this.resources[key];
-            total += entry.count * entry.cps;
-        }
-        return total;
+	raisePrice = (resource: string): void => {
+		this.resources[resource].price *= 1.15;
+	};
 
-    }
+	buyResource = (resource: string): void => {
+		if (!this.canAfford(resource)) return;
+		this.cookieCount -= this.resources[resource].price;
+		this.resources[resource].count++;
+		this.raisePrice(resource);
+		this.redraw();
+	};
 
-    seconds = (): number => {
-        return Math.round(this.elapsedTicks / this.tps);
-    }
+	buyPowerup = (resource: string): void => {
+        const powerup = this.resources[resource].powerup;
+		if (!this.canAffordPowerup(resource) || powerup.status != "Idle") return;
+		this.cookieCount -= this.resources[resource].powerup.price;
+		this.activatePowerup(resource);
+		this.redraw();
+	};
 
-    tick = (): void => {
-        this.cookieCount += this.cookiesPerSecond() / this.tps;
-        this.redraw();
-        this.elapsedTicks++;
-        setTimeout(this.tick, 1000 / this.tps)
-    }
+	activatePowerup = (resource: string): void => {
+		const powerup = this.resources[resource].powerup;
+		powerup.status = "Active";
+		powerup.duration = 15;
+	};
+
+	cooldownPowerup = (resource: string): void => {
+		const powerup = this.resources[resource].powerup;
+		powerup.status = "Cooldown";
+		powerup.duration = 45;
+	};
+
+	cookiesPerSecond = (): number => {
+		let total = 0;
+		for (const key in this.resources) {
+			const entry = this.resources[key];
+			const powerup = entry.powerup;
+			const multiplier = powerup.status == "Active" ? 2 : 1;
+			total += entry.count * entry.cps * multiplier;
+		}
+		return total;
+	};
+
+	seconds = (): number => {
+		return Math.round(this.elapsedTicks / this.tps);
+	};
+
+    //TODO refactor powerup state change, less condition / move into separate function 
+	tick = (): void => {
+		this.elapsedTicks++;
+		//a second has passed
+		if (this.elapsedTicks % this.tps == 0) {
+			for (const key in this.resources) {
+				const entry = this.resources[key];
+				const powerup = entry.powerup;
+				if (powerup.status != "Idle") {
+					powerup.duration--;
+					if (powerup.duration == 0) {
+						powerup.status == "Active"
+							? this.cooldownPowerup(key)
+							: (powerup.status = "Idle");
+					}
+				}
+			}
+		}
+		this.cookieCount += this.cookiesPerSecond() / this.tps;
+		this.redraw();
+		setTimeout(this.tick, 1000 / this.tps);
+	};
 }

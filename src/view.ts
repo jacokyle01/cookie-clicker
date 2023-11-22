@@ -35,6 +35,29 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 	);
 };
 
+const buyPowerups = (ctrl: CookieCtrl): VNode => {
+	return h(
+		"div#powerups",
+		Object.entries(ctrl.resources).map(([rsc, inv]) => {
+			const pwrup = inv.powerup;
+			return h(
+				"div#" + rsc + "_powerup",
+				{ on: { click: () => ctrl.buyPowerup(rsc) } },
+				(ctrl.canAffordPowerup(rsc) ? "" : "X ") +
+					" " +
+					pwrup.status +
+					(pwrup.status == "Idle"
+						? ""
+						: " for " + pwrup.duration + " seconds") +
+					" " +
+					rsc +
+					" powerup costs " +
+					pwrup.price
+			);
+		})
+	);
+};
+
 //TODO don't pass clock as argument
 const countUp = (ctrl: CookieCtrl) => {
 	return h("div", ctrl.seconds() + " seconds passed");
@@ -47,6 +70,7 @@ const view = (ctrl: CookieCtrl): VNode => {
 		clicker(ctrl),
 		countUp(ctrl),
 		buyResources(ctrl),
+		buyPowerups(ctrl),
 	]);
 };
 
