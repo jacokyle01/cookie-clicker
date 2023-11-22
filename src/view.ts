@@ -24,7 +24,7 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 			return h(
 				"div#" + rsc,
 				{ on: { click: () => ctrl.buyResource(rsc) } },
-				rsc + " " + inv.count + " costs " + inv.price
+				(ctrl.canAfford(rsc) ? "" : "X ") + rsc + " " + inv.count + " costs " + inv.price
 			);
 		})
 	);
