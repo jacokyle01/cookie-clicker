@@ -5,4 +5,5 @@ export const resourceNames = ["Cursor", "Baker", "Factory"]
 export type Inventory = {
     count: number;
     price: number;
+    cps: number 
 } 
