@@ -1,3 +1,21 @@
-div {
-    
+#main {
+    height: 75vw;
+}
+
+#game {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+#top {
+    display: flex;
+    justify-content: space-between;
+}
+
+#inventory {
+    display: flex;
+    justify-content: space-around;
 }

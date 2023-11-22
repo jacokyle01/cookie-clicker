@@ -19,9 +19,9 @@ const clicker = (ctrl: CookieCtrl): VNode => {
 
 //TODO refactor mapping resources? remove duplicate code
 const buyResources = (ctrl: CookieCtrl): VNode => {
-	return h(
-		"div#shop",
-		Object.entries(ctrl.resources).map(([rsc, inv]) => {
+	return h("div#shop", [
+		h("h3#shop_title", "Shop"),
+		...Object.entries(ctrl.resources).map(([rsc, inv]) => {
 			return h(
 				"div#" + rsc,
 				{ on: { click: () => ctrl.buyResource(rsc) } },
@@ -32,14 +32,14 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 					" costs " +
 					inv.price
 			);
-		})
-	);
+		}),
+	]);
 };
 
 const buyPowerups = (ctrl: CookieCtrl): VNode => {
-	return h(
-		"div#powerups",
-		Object.entries(ctrl.resources).map(([rsc, inv]) => {
+	return h("div#powerups", [
+		h('h3#powerup_title', 'Powerups'),
+		...Object.entries(ctrl.resources).map(([rsc, inv]) => {
 			const pwrup = inv.powerup;
 			return h(
 				"div#" + rsc + "_powerup",
@@ -55,8 +55,8 @@ const buyPowerups = (ctrl: CookieCtrl): VNode => {
 					" powerup costs " +
 					pwrup.price
 			);
-		})
-	);
+		}),
+	]);
 };
 
 //TODO don't pass clock as argument
@@ -68,30 +68,25 @@ const inventory = (ctrl: CookieCtrl): VNode => {
 	return h(
 		"div#inventory",
 		Object.entries(ctrl.resources).map(([rsc, inv]) => {
-			return h(
-				'div#' + rsc + '_inventory', inv.count + " " + rsc
-			);
+			return h("div#" + rsc + "_inventory ", rsc + " " + inv.count);
 		})
 	);
 };
 
 const view = (ctrl: CookieCtrl): VNode => {
-	return h(
-		"div#game",
-		[
-			h("div#top", [
-				buyPowerups(ctrl),
-				h("div#cookie-wrap", [
-					countUp(ctrl),
-					clicker(ctrl),
-					cookieCount(ctrl),
-					cps(ctrl),
-				]),
-				buyResources(ctrl),
+	return h("div#game", [
+		h("div#top", [
+			buyPowerups(ctrl),
+			h("div#cookie-wrap", [
+				countUp(ctrl),
+				clicker(ctrl),
+				cookieCount(ctrl),
+				cps(ctrl),
 			]),
-			inventory(ctrl)
-		],
-	);
+			buyResources(ctrl),
+		]),
+		inventory(ctrl),
+	]);
 };
 
 export default view;
