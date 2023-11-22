@@ -40,7 +40,9 @@ export default class CookieCtrl {
 	};
 
 	raisePrice = (resource: string): void => {
-		this.resources[resource].price *= 1.15;
+		let price = this.resources[resource].price
+        price *= 1.15
+        this.resources[resource].price = Math.floor(price);
 	};
 
 	buyResource = (resource: string): void => {
