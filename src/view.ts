@@ -11,12 +11,13 @@ const cps = (ctrl: CookieCtrl): VNode => {
 
 const clicker = (ctrl: CookieCtrl): VNode => {
 	return h(
-		"div#counter",
+		"div#clicker",
 		{ on: { click: () => ctrl.clickCookie() } },
 		"Click me!"
 	);
 };
 
+//TODO refactor mapping resources? remove duplicate code
 const buyResources = (ctrl: CookieCtrl): VNode => {
 	return h(
 		"div#shop",
@@ -60,18 +61,37 @@ const buyPowerups = (ctrl: CookieCtrl): VNode => {
 
 //TODO don't pass clock as argument
 const countUp = (ctrl: CookieCtrl) => {
-	return h("div", ctrl.seconds() + " seconds passed");
+	return h("div#clock", ctrl.seconds() + " seconds passed");
+};
+
+const inventory = (ctrl: CookieCtrl): VNode => {
+	return h(
+		"div#inventory",
+		Object.entries(ctrl.resources).map(([rsc, inv]) => {
+			return h(
+				'div#' + rsc + '_inventory', inv.count + " " + rsc
+			);
+		})
+	);
 };
 
 const view = (ctrl: CookieCtrl): VNode => {
-	return h("div#game", [
-		cookieCount(ctrl),
-		cps(ctrl),
-		clicker(ctrl),
-		countUp(ctrl),
-		buyResources(ctrl),
-		buyPowerups(ctrl),
-	]);
+	return h(
+		"div#game",
+		[
+			h("div#top", [
+				buyPowerups(ctrl),
+				h("div#cookie-wrap", [
+					countUp(ctrl),
+					clicker(ctrl),
+					cookieCount(ctrl),
+					cps(ctrl),
+				]),
+				buyResources(ctrl),
+			]),
+			inventory(ctrl)
+		],
+	);
 };
 
 export default view;
