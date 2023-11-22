@@ -20,6 +20,7 @@ const inner = document.createElement("div");
 element.appendChild(inner);
 let vnode = patch(inner, view(ctrl));
 
-function redraw() {
+export function redraw() {
     vnode = patch(vnode, view(ctrl));
 }
+ctrl.tick();

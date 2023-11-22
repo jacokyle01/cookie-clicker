@@ -1,8 +1,5 @@
 import { VNode, h } from "snabbdom";
 import CookieCtrl from "./ctrl";
-import renderClock, { Clock } from "./clock";
-
-const clock = new Clock();
 
 const cookieCount = (ctrl: CookieCtrl): VNode => {
 	return h("div#cookie_count", "Cookies: " + ctrl.cookieCount);
@@ -27,22 +24,28 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 			return h(
 				"div#" + rsc,
 				{ on: { click: () => ctrl.buyResource(rsc) } },
-				(ctrl.canAfford(rsc) ? "" : "X ") + rsc + " " + inv.count + " costs " + inv.price
+				(ctrl.canAfford(rsc) ? "" : "X ") +
+					rsc +
+					" " +
+					inv.count +
+					" costs " +
+					inv.price
 			);
 		})
 	);
 };
 
-const countUp = (clock: Clock) => {
-	return renderClock(clock);
-}
+//TODO don't pass clock as argument
+const countUp = (ctrl: CookieCtrl) => {
+	return h("div", ctrl.seconds() + " seconds passed");
+};
 
 const view = (ctrl: CookieCtrl): VNode => {
 	return h("div#game", [
 		cookieCount(ctrl),
 		cps(ctrl),
 		clicker(ctrl),
-		countUp(clock),
+		countUp(ctrl),
 		buyResources(ctrl),
 	]);
 };

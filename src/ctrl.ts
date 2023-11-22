@@ -2,6 +2,8 @@ import { Redraw, resourceNames, Inventory } from "./interfaces";
 
 export default class CookieCtrl {
     cookieCount = 0;
+    tps = 10;
+    elapsedTicks = 0;
     resources: {[key: string]: Inventory} = {};
 
     constructor(readonly redraw: Redraw) {
@@ -18,7 +20,6 @@ export default class CookieCtrl {
 
     clickCookie = (): void => {
         this.cookieCount++;
-        // console.log(Object.entries(this.resources).map(([key, value]) => `${key}${value.count}`));
         this.redraw();
     }
 
@@ -48,4 +49,14 @@ export default class CookieCtrl {
 
     }
 
+    seconds = (): number => {
+        return Math.round(this.elapsedTicks / this.tps);
+    }
+
+    tick = (): void => {
+        this.cookieCount += this.cookiesPerSecond() / this.tps;
+        this.redraw();
+        this.elapsedTicks++;
+        setTimeout(this.tick, 1000 / this.tps)
+    }
 }
