@@ -7,12 +7,14 @@ import {
     h,
     propsModule,
     attributesModule,
+    classModule
   } from "snabbdom";
   
   const patch = init([
     eventListenersModule,
     propsModule,
-    attributesModule
+    attributesModule,
+    classModule
   ]);
 
 

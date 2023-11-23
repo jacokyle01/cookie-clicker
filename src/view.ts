@@ -1,6 +1,6 @@
 import { VNode, h } from "snabbdom";
 import CookieCtrl from "./ctrl";
-import { baker, cursor, factory, svgs} from "./svg";
+import { baker, cursor, factory, svgs } from "./svg";
 
 const cookieCount = (ctrl: CookieCtrl): VNode => {
 	return h("div#cookie_count", "Cookies: " + ctrl.cookieCount);
@@ -11,13 +11,9 @@ const cps = (ctrl: CookieCtrl): VNode => {
 };
 
 const clicker = (ctrl: CookieCtrl): VNode => {
-	return h(
-		"div#clicker",
-		{ on: { click: () => ctrl.clickCookie() } },
-		[
-			svgs["Cookie"]
-		]
-	);
+	return h("div#clicker", { on: { click: () => ctrl.clickCookie() } }, [
+		svgs["Cookie"],
+	]);
 };
 
 //TODO refactor mapping resources? remove duplicate code
@@ -28,14 +24,13 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 		...Object.entries(ctrl.resources).map(([rsc, inv]) => {
 			return h(
 				"div.shop_item",
-				{ on: { click: () => ctrl.buyResource(rsc) } },
-				[
-					svgs[rsc],
-					h(
-						"div#" + rsc,
-						(ctrl.canAfford(rsc) ? "" : "X ") + rsc + " $" + inv.price
-					),
-				]
+				{
+					on: { click: () => ctrl.buyResource(rsc) },
+					class: {
+						unaffordable: !ctrl.canAfford(rsc),
+					},
+				},
+				[svgs[rsc], h("div#" + rsc, rsc + " $" + inv.price)]
 			);
 		}),
 	]);
@@ -48,9 +43,12 @@ const buyPowerups = (ctrl: CookieCtrl): VNode => {
 			const pwrup = inv.powerup;
 			return h(
 				"div#" + rsc + "_powerup",
-				{ on: { click: () => ctrl.buyPowerup(rsc) } },
-				(ctrl.canAffordPowerup(rsc) ? "" : "X ") +
-					" " +
+				{
+					on: { click: () => ctrl.buyPowerup(rsc) },
+					class: {
+						unaffordable: !ctrl.canAffordPowerup(rsc),
+					},
+				},
 					pwrup.status +
 					(pwrup.status == "Idle"
 						? ""
@@ -92,14 +90,6 @@ const view = (ctrl: CookieCtrl): VNode => {
 		]),
 		inventory(ctrl),
 	]);
-};
-
-const image = (): VNode => {
-	return h("img", {
-		attrs: {
-			src: "/factory.svg",
-		},
-	});
 };
 
 export default view;
