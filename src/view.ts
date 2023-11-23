@@ -3,11 +3,14 @@ import CookieCtrl from "./ctrl";
 import { baker, cursor, factory, svgs } from "./svg";
 
 const cookieCount = (ctrl: CookieCtrl): VNode => {
-	return h("div#cookie_count", "Cookies: " + ctrl.cookieCount);
+	return h("div#cookie_tally", [
+		h("div#cookie_count", ctrl.cookieCount),
+		h("h4#count_label", "Cookies"),
+	]);
 };
 
 const cps = (ctrl: CookieCtrl): VNode => {
-	return h("div#cps", "Cookies per second " + ctrl.cookiesPerSecond());
+	return h("h4#cps", ctrl.cookiesPerSecond() + " per second");
 };
 
 const clicker = (ctrl: CookieCtrl): VNode => {
@@ -20,7 +23,7 @@ const clicker = (ctrl: CookieCtrl): VNode => {
 
 const buyResources = (ctrl: CookieCtrl): VNode => {
 	return h("div#shop.panel", [
-		h("h3#shop_title", "Shop"),
+		h("h2#shop_title", "SHOP"),
 		...Object.entries(ctrl.resources).map(([rsc, inv]) => {
 			return h(
 				"div.shop_item",
@@ -30,7 +33,15 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 						unaffordable: !ctrl.canAfford(rsc),
 					},
 				},
-				[svgs[rsc], h("div#" + rsc, rsc + " $" + inv.price)]
+				[
+					// h("div.shop_item_label", [svgs[rsc], h("div#shop_label", rsc)]),
+					// h("div.shop_item_price.price", inv.price),
+					svgs[rsc],
+					h('div.shop_item_label', [
+						h('h2.item-name', rsc),
+						h('h3.item-cost', inv.price + " 🍪 ")
+					])
+				]
 			);
 		}),
 	]);
@@ -49,7 +60,7 @@ const buyPowerups = (ctrl: CookieCtrl): VNode => {
 						unaffordable: !ctrl.canAffordPowerup(rsc),
 					},
 				},
-					pwrup.status +
+				pwrup.status +
 					(pwrup.status == "Idle"
 						? ""
 						: " for " + pwrup.duration + " seconds") +

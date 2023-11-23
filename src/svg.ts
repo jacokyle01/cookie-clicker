@@ -2,7 +2,7 @@ import { VNode, h } from "snabbdom";
 
 export const factory = () => {
 	return h(
-		"svg",
+		"svg.shop-svg",
 		{
 			attrs: {
 				viewBox: "0 0 300 300",
@@ -96,7 +96,7 @@ export const factory = () => {
 };
 
 export const baker = () => {
-	return h('svg', {
+	return h('svg.shop-svg', {
 		attrs: {
 			'viewBox': '0 0 300 300',
 			'shape-rendering': 'geometricPrecision',
@@ -273,7 +273,7 @@ export const baker = () => {
 }
 
 export const cursor = (): VNode => {
-	return h('svg', {
+	return h('svg.shop-svg', {
 		attrs: {
 			'viewBox': '0 0 300 300',
 			'shape-rendering': 'geometricPrecision',
@@ -303,7 +303,7 @@ export const cursor = (): VNode => {
 }
 
 export const cookie = (): VNode => {
-	return h('svg', {
+	return h('svg#cookie-svg', {
 		attrs: {
 			'viewBox': '0 0 416.991 416.991',
 			'shape-rendering': 'geometricPrecision',
