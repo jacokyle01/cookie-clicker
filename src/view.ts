@@ -1,6 +1,6 @@
 import { VNode, h } from "snabbdom";
 import CookieCtrl from "./ctrl";
-import { baker, cursor, factory, getSVGbyName} from "./svg";
+import { baker, cursor, factory, svgs} from "./svg";
 
 const cookieCount = (ctrl: CookieCtrl): VNode => {
 	return h("div#cookie_count", "Cookies: " + ctrl.cookieCount);
@@ -14,7 +14,9 @@ const clicker = (ctrl: CookieCtrl): VNode => {
 	return h(
 		"div#clicker",
 		{ on: { click: () => ctrl.clickCookie() } },
-		"Click me!"
+		[
+			svgs["Cookie"]
+		]
 	);
 };
 
@@ -28,7 +30,7 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 				"div.shop_item",
 				{ on: { click: () => ctrl.buyResource(rsc) } },
 				[
-					getSVGbyName(rsc),
+					svgs[rsc],
 					h(
 						"div#" + rsc,
 						ctrl.canAfford(rsc) ? "" : "X " + rsc + " $" + inv.price
@@ -89,7 +91,6 @@ const view = (ctrl: CookieCtrl): VNode => {
 			buyResources(ctrl),
 		]),
 		inventory(ctrl),
-		cursor(),
 	]);
 };
 
