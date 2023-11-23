@@ -33,7 +33,7 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 					svgs[rsc],
 					h(
 						"div#" + rsc,
-						ctrl.canAfford(rsc) ? "" : "X " + rsc + " $" + inv.price
+						(ctrl.canAfford(rsc) ? "" : "X ") + rsc + " $" + inv.price
 					),
 				]
 			);
