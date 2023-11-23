@@ -1,5 +1,6 @@
 import { VNode, h } from "snabbdom";
 import CookieCtrl from "./ctrl";
+import { baker, cursor, factory, getSVGbyName} from "./svg";
 
 const cookieCount = (ctrl: CookieCtrl): VNode => {
 	return h("div#cookie_count", "Cookies: " + ctrl.cookieCount);
@@ -18,19 +19,21 @@ const clicker = (ctrl: CookieCtrl): VNode => {
 };
 
 //TODO refactor mapping resources? remove duplicate code
+
 const buyResources = (ctrl: CookieCtrl): VNode => {
 	return h("div#shop.panel", [
 		h("h3#shop_title", "Shop"),
 		...Object.entries(ctrl.resources).map(([rsc, inv]) => {
 			return h(
-				"div#" + rsc,
+				"div.shop_item",
 				{ on: { click: () => ctrl.buyResource(rsc) } },
-				(ctrl.canAfford(rsc) ? "" : "X ") +
-					rsc +
-					" " +
-					inv.count +
-					" costs " +
-					inv.price
+				[
+					getSVGbyName(rsc),
+					h(
+						"div#" + rsc,
+						ctrl.canAfford(rsc) ? "" : "X " + rsc + " $" + inv.price
+					),
+				]
 			);
 		}),
 	]);
@@ -38,7 +41,7 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 
 const buyPowerups = (ctrl: CookieCtrl): VNode => {
 	return h("div#powerups.panel", [
-		h('h3#powerup_title', 'Powerups'),
+		h("h3#powerup_title", "Powerups"),
 		...Object.entries(ctrl.resources).map(([rsc, inv]) => {
 			const pwrup = inv.powerup;
 			return h(
@@ -86,7 +89,16 @@ const view = (ctrl: CookieCtrl): VNode => {
 			buyResources(ctrl),
 		]),
 		inventory(ctrl),
+		cursor(),
 	]);
+};
+
+const image = (): VNode => {
+	return h("img", {
+		attrs: {
+			src: "/factory.svg",
+		},
+	});
 };
 
 export default view;

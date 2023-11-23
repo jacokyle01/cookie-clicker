@@ -5,10 +5,14 @@ import {
     init,
     eventListenersModule,
     h,
+    propsModule,
+    attributesModule,
   } from "snabbdom";
   
   const patch = init([
-    eventListenersModule // attaches event listeners
+    eventListenersModule,
+    propsModule,
+    attributesModule
   ]);
 
 
