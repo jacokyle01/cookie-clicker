@@ -1,6 +1,6 @@
 import { VNode, h } from "snabbdom";
 import CookieCtrl from "./ctrl";
-import { baker, cursor, factory, svgs } from "./svg";
+import { baker, cursor, factory, lightning, svgs } from "./svg";
 
 const cookieCount = (ctrl: CookieCtrl): VNode => {
 	return h("div#cookie_tally", [
@@ -22,25 +22,51 @@ const clicker = (ctrl: CookieCtrl): VNode => {
 //TODO refactor mapping resources? remove duplicate code
 
 const buyResources = (ctrl: CookieCtrl): VNode => {
-	return h("div#shop.panel", [
+	return h("div#shop", [
 		h("h2#shop_title", "SHOP"),
 		...Object.entries(ctrl.resources).map(([rsc, inv]) => {
+			const pwrup = inv.powerup;
 			return h(
-				"div.shop_item",
+				"div.shop_item.panel",
 				{
-					on: { click: () => ctrl.buyResource(rsc) },
 					class: {
-						unaffordable: !ctrl.canAfford(rsc),
+						idle: pwrup.status == "Idle",
+						active: pwrup.status == "Active",
+						cooldown: pwrup.status == "Cooldown",
 					},
 				},
 				[
-					// h("div.shop_item_label", [svgs[rsc], h("div#shop_label", rsc)]),
-					// h("div.shop_item_price.price", inv.price),
-					svgs[rsc],
-					h('div.shop_item_label', [
-						h('h2.item-name', rsc),
-						h('h3.item-cost', inv.price + " 🍪 ")
-					])
+					h(
+						"div.buy-resource",
+						{
+							on: { click: () => ctrl.buyResource(rsc) },
+							class: {
+								unaffordable: !ctrl.canAfford(rsc),
+							},
+						},
+						[
+							// h("div.shop_item_label", [svgs[rsc], h("div#shop_label", rsc)]),
+							// h("div.shop_item_price.price", inv.price),
+							svgs[rsc],
+							h("div.shop_item_label", [
+								h("h2.item-name", rsc),
+								h("h3.item-cost", inv.price + " 🍪 "),
+							]),
+						]
+					),
+					h(
+						"div.buy-powerup",
+						{
+							class: {
+								unaffordable: !ctrl.canAffordPowerup(rsc),
+								idle: pwrup.status == "Idle",
+								active: pwrup.status == "Active",
+								cooldown: pwrup.status == "Cooldown",
+							},
+							on: { click: () => ctrl.buyPowerup(rsc) },
+						},
+						[lightning(), h("h3.powerup-price", pwrup.price + " 🍪 ")]
+					),
 				]
 			);
 		}),
@@ -91,7 +117,7 @@ const view = (ctrl: CookieCtrl): VNode => {
 	return h("div#game", [
 		h("div#top", [
 			buyPowerups(ctrl),
-			h("div#cookie-wrap.panel", [
+			h("div#cookie-wrap.panel.no-select", [
 				countUp(ctrl),
 				clicker(ctrl),
 				cookieCount(ctrl),
