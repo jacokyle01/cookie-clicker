@@ -273,7 +273,7 @@ export const baker = () => {
 }
 
 export const cursor = (): VNode => {
-	return h('svg.shop-svg', {
+	return h('svg', {
 		attrs: {
 			'viewBox': '0 0 300 300',
 			'shape-rendering': 'geometricPrecision',

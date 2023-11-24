@@ -18,6 +18,9 @@ body {
 h2#shop_title {
 	text-align: center;
 	color: #BABABA;
+	font-family: "Noto Sans", sans-serif;
+	letter-spacing: 14px;
+
 }
 
 h2 {
@@ -165,3 +168,15 @@ svg#lightning {
 	background-color: rgb(54, 146, 231);
 }
 
+#entries {
+	display: flex; 
+	justify-content: space-evenly;
+}
+
+svg {
+	z-index: 5;
+}
+
+.entry {
+	flex: 1;
+}

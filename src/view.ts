@@ -105,12 +105,19 @@ const countUp = (ctrl: CookieCtrl) => {
 };
 
 const inventory = (ctrl: CookieCtrl): VNode => {
-	return h(
-		"div#inventory.panel",
+	return h('inventory.panel', [ 
+		h('h2.inventory_label', 'INVENTORY'), 
+		h(
+		"div#entries",
 		Object.entries(ctrl.resources).map(([rsc, inv]) => {
-			return h("div#" + rsc + "_inventory ", rsc + " " + inv.count);
+			return h("div.entry", [
+				svgs[rsc],
+				h('h2.item-name', rsc),
+				h('h2.item-count', inv.count ? "x" + inv.count : inv.count)
+
+			]);
 		})
-	);
+	)]);
 };
 
 const view = (ctrl: CookieCtrl): VNode => {
