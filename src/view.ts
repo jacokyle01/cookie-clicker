@@ -1,6 +1,6 @@
 import { VNode, h } from "snabbdom";
 import CookieCtrl from "./ctrl";
-import { baker, cursor, factory, lightning, svgs } from "./svg";
+import { baker, cursor, factory, lab, lightning, svgs } from "./svg";
 
 const cookieCount = (ctrl: CookieCtrl): VNode => {
 	return h("div#cookie_tally", [
@@ -23,53 +23,55 @@ const clicker = (ctrl: CookieCtrl): VNode => {
 
 const buyResources = (ctrl: CookieCtrl): VNode => {
 	return h("div#shop", [
-		h("h2#shop_title", "SHOP"),
-		...Object.entries(ctrl.resources).map(([rsc, inv]) => {
-			const pwrup = inv.powerup;
-			return h(
-				"div.shop_item.panel",
-				{
-					class: {
-						idle: pwrup.status == "Idle",
-						active: pwrup.status == "Active",
-						cooldown: pwrup.status == "Cooldown",
+		h("h2#shop_title.section_title", "SHOP"),
+		h("div#shop-items", [
+			...Object.entries(ctrl.resources).map(([rsc, inv]) => {
+				const pwrup = inv.powerup;
+				return h(
+					"div.shop_item.panel",
+					{
+						class: {
+							idle: pwrup.status == "Idle",
+							active: pwrup.status == "Active",
+							cooldown: pwrup.status == "Cooldown",
+						},
 					},
-				},
-				[
-					h(
-						"div.buy-resource",
-						{
-							on: { click: () => ctrl.buyResource(rsc) },
-							class: {
-								unaffordable: !ctrl.canAfford(rsc),
+					[
+						h(
+							"div.buy-resource",
+							{
+								on: { click: () => ctrl.buyResource(rsc) },
+								class: {
+									unaffordable: !ctrl.canAfford(rsc),
+								},
 							},
-						},
-						[
-							// h("div.shop_item_label", [svgs[rsc], h("div#shop_label", rsc)]),
-							// h("div.shop_item_price.price", inv.price),
-							svgs[rsc],
-							h("div.shop_item_label", [
-								h("h2.item-name", rsc),
-								h("h3.item-cost", inv.price + " 🍪 "),
-							]),
-						]
-					),
-					h(
-						"div.buy-powerup",
-						{
-							class: {
-								unaffordable: !ctrl.canAffordPowerup(rsc),
-								idle: pwrup.status == "Idle",
-								active: pwrup.status == "Active",
-								cooldown: pwrup.status == "Cooldown",
+							[
+								// h("div.shop_item_label", [svgs[rsc], h("div#shop_label", rsc)]),
+								// h("div.shop_item_price.price", inv.price),
+								// svgs[rsc],
+								h("div.shop_item_label", [
+									h("h2.item-name", rsc),
+									h("h3.item-cost", inv.price + " 🍪 "),
+								]),
+							]
+						),
+						h(
+							"div.buy-powerup",
+							{
+								class: {
+									unaffordable: !ctrl.canAffordPowerup(rsc),
+									idle: pwrup.status == "Idle",
+									active: pwrup.status == "Active",
+									cooldown: pwrup.status == "Cooldown",
+								},
+								on: { click: () => ctrl.buyPowerup(rsc) },
 							},
-							on: { click: () => ctrl.buyPowerup(rsc) },
-						},
-						[lightning(), h("h3.powerup-price", pwrup.price + " 🍪 ")]
-					),
-				]
-			);
-		}),
+							[lightning(), h("h3.powerup-price", pwrup.price + " 🍪 ")]
+						),
+					]
+				);
+			}),
+		]),
 	]);
 };
 
@@ -105,25 +107,25 @@ const countUp = (ctrl: CookieCtrl) => {
 };
 
 const inventory = (ctrl: CookieCtrl): VNode => {
-	return h('inventory.panel', [ 
-		h('h2.inventory_label', 'INVENTORY'), 
+	return h("inventory", [
+		h("h2.inventory_label.section_title", "INVENTORY"),
 		h(
-		"div#entries",
-		Object.entries(ctrl.resources).map(([rsc, inv]) => {
-			return h("div.entry", [
-				svgs[rsc],
-				h('h2.item-name', rsc),
-				h('h2.item-count', inv.count ? "x" + inv.count : inv.count)
-
-			]);
-		})
-	)]);
+			"div#entries.panel",
+			Object.entries(ctrl.resources).map(([rsc, inv]) => {
+				return h("div.entry", [
+					svgs[rsc],
+					h("h2.item-name", rsc),
+					h("h2.item-count", inv.count ? "x" + inv.count : inv.count),
+				]);
+			})
+		),
+	]);
 };
 
 const view = (ctrl: CookieCtrl): VNode => {
 	return h("div#game", [
 		h("div#top", [
-			buyPowerups(ctrl),
+			// buyPowerups(ctrl),
 			h("div#cookie-wrap.panel.no-select", [
 				countUp(ctrl),
 				clicker(ctrl),
@@ -132,6 +134,7 @@ const view = (ctrl: CookieCtrl): VNode => {
 			]),
 			buyResources(ctrl),
 		]),
+		h("hr"),
 		inventory(ctrl),
 	]);
 };
