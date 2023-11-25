@@ -3,10 +3,7 @@ import CookieCtrl from "./ctrl";
 import { baker, cursor, factory, lab, lightning, svgs } from "./svg";
 
 const cookieCount = (ctrl: CookieCtrl): VNode => {
-	return h("div#cookie_tally", [
-		h("div#cookie_count", ctrl.cookieCount),
-		h("h4#count_label", "Cookies"),
-	]);
+	return h("div#cookie_tally", [h("div#cookie_count", ctrl.cookieCount)]);
 };
 
 const cps = (ctrl: CookieCtrl): VNode => {
@@ -43,7 +40,7 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 								on: { click: () => ctrl.buyResource(rsc) },
 								class: {
 									unaffordable: !ctrl.canAfford(rsc),
-									affordable: ctrl.canAfford(rsc)
+									affordable: ctrl.canAfford(rsc),
 								},
 							},
 							[
@@ -97,11 +94,13 @@ const inventory = (ctrl: CookieCtrl): VNode => {
 const view = (ctrl: CookieCtrl): VNode => {
 	return h("div#game", [
 		h("div#top", [
-			h("div#cookie-wrap.panel.no-select", [
+			h("div#cookie-wrap", [
+				h("h2.section_title", "COOKIES"),
+				h('div.cookie-info.panel', [
 				countUp(ctrl),
 				clicker(ctrl),
 				cookieCount(ctrl),
-				cps(ctrl),
+				cps(ctrl) ])
 			]),
 			buyResources(ctrl),
 		]),
