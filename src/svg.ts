@@ -79,7 +79,7 @@ export const cookie = (): VNode => {
 		{
 			attrs: {
 				width: "920",
-				height: "152",
+				height: "122",
 				viewBox: "0 0 920 512",
 			},
 		},

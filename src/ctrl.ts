@@ -27,9 +27,7 @@ export default class CookieCtrl {
 
 	clickCookie = (): void => {
 		this.cookieCount++;
-		console.log(this.resources);
 		this.redraw();
-		console.log(this.resources);
 	};
 
 	canAfford = (resource: string): boolean => {
@@ -41,9 +39,9 @@ export default class CookieCtrl {
 	};
 
 	raisePrice = (resource: string): void => {
-		let price = this.resources[resource].price
-        price *= 1.15
-        this.resources[resource].price = Math.floor(price);
+		let price = this.resources[resource].price;
+		price *= 1.15;
+		this.resources[resource].price = Math.floor(price);
 	};
 
 	buyResource = (resource: string): void => {
@@ -55,7 +53,7 @@ export default class CookieCtrl {
 	};
 
 	buyPowerup = (resource: string): void => {
-        const powerup = this.resources[resource].powerup;
+		const powerup = this.resources[resource].powerup;
 		if (!this.canAffordPowerup(resource) || powerup.status != "Idle") return;
 		this.cookieCount -= this.resources[resource].powerup.price;
 		this.activatePowerup(resource);
@@ -83,13 +81,24 @@ export default class CookieCtrl {
 			total += entry.count * entry.cps * multiplier;
 		}
 		return total;
+		
 	};
 
 	seconds = (): number => {
 		return Math.round(this.elapsedTicks / this.tps);
 	};
 
-    //TODO refactor powerup state change, less condition / move into separate function 
+	getFormattedTime = (): string => {
+		const hours: number = Math.floor(this.seconds() / 3600);
+		const minutes = Math.floor((this.seconds() % 3600) / 60);
+		const remainingSeconds = this.seconds() % 60;
+		const formattedTime = `${String(hours).padStart(2, "0")}:${String(
+			minutes
+		).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
+		return formattedTime;
+	};
+
+	//TODO refactor powerup state change, less condition / move into separate function
 	tick = (): void => {
 		this.elapsedTicks++;
 		//a second has passed

@@ -5,7 +5,7 @@
 
 #main {
 	margin: 1em;
-	height: 100vh;
+	height: 95vh;
 }
 
 body {
@@ -245,6 +245,6 @@ hr {
 	top: -10px;
 }
 
-#cps {
+/* #cps {
 	margin-top: 10px;
-}
+} */

@@ -3,7 +3,7 @@ import CookieCtrl from "./ctrl";
 import { baker, cursor, factory, lab, lightning, svgs } from "./svg";
 
 const cookieCount = (ctrl: CookieCtrl): VNode => {
-	return h("div#cookie_tally", [h("div#cookie_count", ctrl.cookieCount)]);
+	return h("div#cookie_tally", [h("div#cookie_count", Math.round(ctrl.cookieCount))]);
 };
 
 const cps = (ctrl: CookieCtrl): VNode => {
@@ -72,7 +72,7 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 };
 
 const countUp = (ctrl: CookieCtrl) => {
-	return h("div#clock", ctrl.seconds() + " seconds passed");
+	return h("div#clock", "Playtime " + ctrl.getFormattedTime());
 };
 
 const inventory = (ctrl: CookieCtrl): VNode => {
@@ -96,11 +96,12 @@ const view = (ctrl: CookieCtrl): VNode => {
 		h("div#top", [
 			h("div#cookie-wrap", [
 				h("h2.section_title", "COOKIES"),
-				h('div.cookie-info.panel', [
-				countUp(ctrl),
-				clicker(ctrl),
-				cookieCount(ctrl),
-				cps(ctrl) ])
+				h("div.cookie-info.panel", [
+					clicker(ctrl),
+					cookieCount(ctrl),
+					cps(ctrl),
+					countUp(ctrl),
+				]),
 			]),
 			buyResources(ctrl),
 		]),
