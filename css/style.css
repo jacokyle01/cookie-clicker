@@ -65,7 +65,7 @@ h4 {
 	color: #bababa;
 	margin-left: 1em;
 	margin-right: 1em;
-	margin-top: 0.25em;
+	/* margin-top: 0.25em; */
 	margin-bottom: 0.25em;
 	text-align: center;
 	border-radius: 3px;
@@ -264,6 +264,11 @@ hr {
 	#cookie-wrap {
 		width: 50vw;
 	}
+
+	.section_title {
+		margin-top: 15px;
+		margin-bottom: 0px;
+	}
 }
 
 @media (max-width: 550px) {
@@ -287,5 +292,10 @@ hr {
 
 	#cookie-wrap {
 		width: 75vw;
+	}
+
+	.section_title {
+		margin-top: 15px;
+		margin-bottom: 0px;
 	}
 }
