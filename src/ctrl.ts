@@ -29,6 +29,7 @@ export default class CookieCtrl {
 		this.cookieCount++;
 		console.log(this.resources);
 		this.redraw();
+		console.log(this.resources);
 	};
 
 	canAfford = (resource: string): boolean => {
