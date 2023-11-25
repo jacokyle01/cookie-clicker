@@ -10,14 +10,14 @@ export default class CookieCtrl {
 		//TODO: move this to initialization / config class?
 		resourceNames.forEach((resourceName: string, index: number) => {
 			let pwrup: Powerup = {
-				price: Math.pow(index + 1, 3) * 100,
+				price: Math.pow(index + 1, 4) * 100,
 				status: "Idle",
 				duration: 0,
 			};
 
 			let inventory = {
 				count: 0,
-				price: index * index * index * 15 + 10,
+				price: Math.pow(index + 1, 5) * 15 + 10,
 				cps: index * index * 15 + 10,
 				powerup: pwrup,
 			};
