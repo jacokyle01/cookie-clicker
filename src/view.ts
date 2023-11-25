@@ -43,12 +43,13 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 								on: { click: () => ctrl.buyResource(rsc) },
 								class: {
 									unaffordable: !ctrl.canAfford(rsc),
+									affordable: ctrl.canAfford(rsc)
 								},
 							},
 							[
 								h("div.shop_item_label", [
 									h("h2.item-name", rsc),
-									h("h3.item-cost", inv.price + " 🍪 "),
+									h("h3.item-cost", inv.price),
 								]),
 							]
 						),
@@ -57,13 +58,14 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 							{
 								class: {
 									unaffordable: !ctrl.canAffordPowerup(rsc),
+									affordable: ctrl.canAffordPowerup(rsc),
 									idle: pwrup.status == "Idle",
 									active: pwrup.status == "Active",
 									cooldown: pwrup.status == "Cooldown",
 								},
 								on: { click: () => ctrl.buyPowerup(rsc) },
 							},
-							[lightning(), h("h3.powerup-price", pwrup.price + " 🍪 ")]
+							[lightning(), h("h3.powerup-price", pwrup.price)]
 						),
 					]
 				);

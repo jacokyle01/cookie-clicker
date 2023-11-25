@@ -1,7 +1,7 @@
 * {
 	padding: 0px;
 	margin: 0px;
-}	
+}
 
 #main {
 	margin: 1em;
@@ -18,12 +18,11 @@ body {
 
 .section_title {
 	text-align: center;
-	color: #BABABA;
+	color: #bababa;
 	font-family: "Noto Sans", sans-serif;
 	letter-spacing: 8px;
 	font-size: 2em;
 	color: #999;
-
 }
 
 h2 {
@@ -32,7 +31,7 @@ h2 {
 }
 
 h3 {
-	font-size: 0.75rem;
+	font-size: 1rem;
 }
 
 h4 {
@@ -86,6 +85,13 @@ h4 {
 	flex-direction: row;
 	justify-content: flex-start;
 	row-gap: 10px;
+	flex: 1;
+}
+
+.buy-resource.affordable:hover {
+	color: white;
+	background: linear-gradient(to bottom, hsl(37, 7%, 32%), hsl(37, 5%, 29%) 100%);
+
 }
 
 .shop_item {
@@ -95,7 +101,11 @@ h4 {
 	border-radius: 3px;
 	height: 5em;
 	width: 15em;
-	background: linear-gradient(to bottom, hsl(37, 7%, 22%), hsl(37, 5%, 19%) 100%);
+	background: linear-gradient(
+		to bottom,
+		hsl(37, 7%, 22%),
+		hsl(37, 5%, 19%) 100%
+	);
 }
 
 .shop_item_label {
@@ -145,15 +155,16 @@ h4 {
 svg.lightning {
 	width: 50px;
 	height: 50px;
-} 
+}
 
 .buy-powerup {
 	border-radius: 3px;
 	padding: 5px;
 	width: 4em;
 	display: flex;
-	flex-direction: column;	
+	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 }
 
 .buy-powerup > h3 {
@@ -164,27 +175,34 @@ svg.lightning {
 	background-color: #808080;
 }
 
+.idle > .buy-powerup.affordable:hover {
+	text-decoration: none;
+	background: #d64f00;
+	border-bottom: 5px solid #963700;
+	text-shadow: 0 -1px #963700;
+}
+
 .active > .buy-powerup {
-	background-color: #D64F00;
+	background-color: #963700;
 }
 
 .shop_item.active {
 	animation: glow 1s infinite alternate;
-	box-shadow: 0 0 10px yellow
+	box-shadow: 0 0 10px yellow;
 }
 
 @keyframes glow {
 	to {
-	  box-shadow: 0 0 10px yellow;
+		box-shadow: 0 0 10px yellow;
 	}
-  }
+}
 
-.cooldown > .buy-powerup { 
+.cooldown > .buy-powerup {
 	background-color: rgb(54, 146, 231);
 }
 
 #entries {
-	display: flex; 
+	display: flex;
 	justify-content: space-evenly;
 	gap: 7px;
 }
@@ -203,12 +221,11 @@ svg {
 .shop-svg {
 	max-height: 50px;
 	max-width: 50px;
-}	
+}
 
 #shop-items {
 	display: grid;
-	grid-template-areas: 
-	"div div";
+	grid-template-areas: "div div";
 	grid-gap: 5px;
 }
 

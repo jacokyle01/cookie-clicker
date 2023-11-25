@@ -1,7 +1,7 @@
 import { Redraw, resourceNames, Inventory, Powerup } from "./interfaces";
 
 export default class CookieCtrl {
-	cookieCount = 0;
+	cookieCount = 1000;
 	tps = 10;
 	elapsedTicks = 0;
 	resources: { [key: string]: Inventory } = {};
