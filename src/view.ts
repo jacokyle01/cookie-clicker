@@ -3,7 +3,7 @@ import CookieCtrl from "./ctrl";
 import { baker, cursor, factory, lab, lightning, svgs } from "./svg";
 
 const cookieCount = (ctrl: CookieCtrl): VNode => {
-	return h("div#cookie_tally", [h("div#cookie_count", Math.round(ctrl.cookieCount))]);
+	return h("div#cookie_tally", [h("div#cookie_count", Math.round(ctrl.cookieCount).toLocaleString())]);
 };
 
 const cps = (ctrl: CookieCtrl): VNode => {
@@ -46,7 +46,7 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 							[
 								h("div.shop_item_label", [
 									h("h2.item-name", rsc),
-									h("h3.item-cost", inv.price),
+									h("h3.item-cost", inv.price.toLocaleString()),
 								]),
 							]
 						),
@@ -62,7 +62,7 @@ const buyResources = (ctrl: CookieCtrl): VNode => {
 								},
 								on: { click: () => ctrl.buyPowerup(rsc) },
 							},
-							[lightning(), h("h3.powerup-price", pwrup.price)]
+							[lightning(), h("h3.powerup-price", pwrup.price.toLocaleString())]
 						),
 					]
 				);
