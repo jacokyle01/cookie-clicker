@@ -18,7 +18,7 @@ export default class CookieCtrl {
 			let inventory = {
 				count: 0,
 				price: Math.pow(index + 1, 5) * 15 + 10,
-				cps: index * index * 15 + 10,
+				cps: index * index * index * 10 + 10,
 				powerup: pwrup,
 			};
 			this.resources[resourceName] = inventory;
