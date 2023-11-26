@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"interfaces.ts":[function(require,module,exports) {
+})({"gKvF":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -126,7 +126,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.resourceNames = void 0;
 //TODO: refactor inventory: add Resource type? 
 var resourceNames = exports.resourceNames = ["Cursor", "Baker", "Factory", "Lab", "Mine", "Shipment"];
-},{}],"ctrl.ts":[function(require,module,exports) {
+},{}],"pZQw":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -243,7 +243,7 @@ var CookieCtrl = exports.default = /*#__PURE__*/_createClass(function CookieCtrl
     _this.resources[resourceName] = inventory;
   });
 });
-},{"./interfaces":"interfaces.ts"}],"../node_modules/snabbdom/build/htmldomapi.js":[function(require,module,exports) {
+},{"./interfaces":"gKvF"}],"ko0x":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -363,7 +363,7 @@ var htmlDomApi = exports.htmlDomApi = {
   isComment: isComment,
   isDocumentFragment: isDocumentFragment
 };
-},{}],"../node_modules/snabbdom/build/vnode.js":[function(require,module,exports) {
+},{}],"TTMZ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -381,7 +381,7 @@ function vnode(sel, data, children, text, elm) {
     key: key
   };
 }
-},{}],"../node_modules/snabbdom/build/is.js":[function(require,module,exports) {
+},{}],"jzuj":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -393,7 +393,7 @@ var array = exports.array = Array.isArray;
 function primitive(s) {
   return typeof s === "string" || typeof s === "number" || s instanceof String || s instanceof Number;
 }
-},{}],"../node_modules/snabbdom/build/init.js":[function(require,module,exports) {
+},{}],"MvQr":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -747,7 +747,7 @@ function init(modules, domApi, options) {
     return vnode;
   };
 }
-},{"./vnode":"../node_modules/snabbdom/build/vnode.js","./is":"../node_modules/snabbdom/build/is.js","./htmldomapi":"../node_modules/snabbdom/build/htmldomapi.js"}],"../node_modules/snabbdom/build/h.js":[function(require,module,exports) {
+},{"./vnode":"TTMZ","./is":"jzuj","./htmldomapi":"ko0x"}],"ZGC2":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -830,7 +830,7 @@ function fragment(children) {
   }
   return (0, _vnode.vnode)(undefined, {}, c, text, undefined);
 }
-},{"./vnode":"../node_modules/snabbdom/build/vnode.js","./is":"../node_modules/snabbdom/build/is.js"}],"../node_modules/snabbdom/build/thunk.js":[function(require,module,exports) {
+},{"./vnode":"TTMZ","./is":"jzuj"}],"ITQG":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -894,7 +894,7 @@ var thunk = exports.thunk = function thunk(sel, key, fn, args) {
     args: args
   });
 };
-},{"./h":"../node_modules/snabbdom/build/h.js"}],"../node_modules/snabbdom/build/helpers/attachto.js":[function(require,module,exports) {
+},{"./h":"ZGC2"}],"NGUd":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -948,7 +948,7 @@ function attachTo(target, vnode) {
   hook.destroy = destroy;
   return vnode;
 }
-},{}],"../node_modules/snabbdom/build/tovnode.js":[function(require,module,exports) {
+},{}],"BOed":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1001,13 +1001,13 @@ function toVNode(node, domApi) {
     return (0, _vnode.vnode)("", {}, [], undefined, node);
   }
 }
-},{"./h":"../node_modules/snabbdom/build/h.js","./vnode":"../node_modules/snabbdom/build/vnode.js","./htmldomapi":"../node_modules/snabbdom/build/htmldomapi.js"}],"../node_modules/snabbdom/build/hooks.js":[function(require,module,exports) {
+},{"./h":"ZGC2","./vnode":"TTMZ","./htmldomapi":"ko0x"}],"QkEJ":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-},{}],"../node_modules/snabbdom/build/modules/attributes.js":[function(require,module,exports) {
+},{}],"Iu6o":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1064,7 +1064,7 @@ var attributesModule = exports.attributesModule = {
   create: updateAttrs,
   update: updateAttrs
 };
-},{}],"../node_modules/snabbdom/build/modules/class.js":[function(require,module,exports) {
+},{}],"QVZf":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1098,7 +1098,7 @@ var classModule = exports.classModule = {
   create: updateClass,
   update: updateClass
 };
-},{}],"../node_modules/snabbdom/build/modules/dataset.js":[function(require,module,exports) {
+},{}],"qoJ3":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1141,7 +1141,7 @@ var datasetModule = exports.datasetModule = {
   create: updateDataset,
   update: updateDataset
 };
-},{}],"../node_modules/snabbdom/build/modules/eventlisteners.js":[function(require,module,exports) {
+},{}],"KZ2c":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1228,7 +1228,7 @@ var eventListenersModule = exports.eventListenersModule = {
   update: updateEventListeners,
   destroy: updateEventListeners
 };
-},{}],"../node_modules/snabbdom/build/modules/props.js":[function(require,module,exports) {
+},{}],"nyaW":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1258,7 +1258,7 @@ var propsModule = exports.propsModule = {
   create: updateProps,
   update: updateProps
 };
-},{}],"../node_modules/snabbdom/build/modules/style.js":[function(require,module,exports) {
+},{}],"pvdU":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1367,7 +1367,7 @@ var styleModule = exports.styleModule = {
   destroy: applyDestroyStyle,
   remove: applyRemoveStyle
 };
-},{}],"../node_modules/snabbdom/build/jsx.js":[function(require,module,exports) {
+},{}],"fPUm":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1438,7 +1438,7 @@ function jsx(tag, data) {
   }
 }
 (function (jsx) {})(jsx || (exports.jsx = jsx = {}));
-},{"./vnode":"../node_modules/snabbdom/build/vnode.js","./h":"../node_modules/snabbdom/build/h.js"}],"../node_modules/snabbdom/build/index.js":[function(require,module,exports) {
+},{"./vnode":"TTMZ","./h":"ZGC2"}],"SjZr":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1599,7 +1599,7 @@ var _eventlisteners = require("./modules/eventlisteners");
 var _props = require("./modules/props");
 var _style = require("./modules/style");
 var _jsx = require("./jsx");
-},{"./htmldomapi":"../node_modules/snabbdom/build/htmldomapi.js","./init":"../node_modules/snabbdom/build/init.js","./thunk":"../node_modules/snabbdom/build/thunk.js","./vnode":"../node_modules/snabbdom/build/vnode.js","./helpers/attachto":"../node_modules/snabbdom/build/helpers/attachto.js","./is":"../node_modules/snabbdom/build/is.js","./tovnode":"../node_modules/snabbdom/build/tovnode.js","./h":"../node_modules/snabbdom/build/h.js","./hooks":"../node_modules/snabbdom/build/hooks.js","./modules/attributes":"../node_modules/snabbdom/build/modules/attributes.js","./modules/class":"../node_modules/snabbdom/build/modules/class.js","./modules/dataset":"../node_modules/snabbdom/build/modules/dataset.js","./modules/eventlisteners":"../node_modules/snabbdom/build/modules/eventlisteners.js","./modules/props":"../node_modules/snabbdom/build/modules/props.js","./modules/style":"../node_modules/snabbdom/build/modules/style.js","./jsx":"../node_modules/snabbdom/build/jsx.js"}],"svg.ts":[function(require,module,exports) {
+},{"./htmldomapi":"ko0x","./init":"MvQr","./thunk":"ITQG","./vnode":"TTMZ","./helpers/attachto":"NGUd","./is":"jzuj","./tovnode":"BOed","./h":"ZGC2","./hooks":"QkEJ","./modules/attributes":"Iu6o","./modules/class":"QVZf","./modules/dataset":"qoJ3","./modules/eventlisteners":"KZ2c","./modules/props":"nyaW","./modules/style":"pvdU","./jsx":"fPUm"}],"ROsf":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1765,7 +1765,7 @@ var svgs = exports.svgs = {
   Mine: mine(),
   Shipment: shipment()
 };
-},{"snabbdom":"../node_modules/snabbdom/build/index.js"}],"view.ts":[function(require,module,exports) {
+},{"snabbdom":"SjZr"}],"wl4Y":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1853,7 +1853,7 @@ var view = function view(ctrl) {
   return (0, _snabbdom.h)("div#game", [(0, _snabbdom.h)("div#top", [(0, _snabbdom.h)("div#cookie-wrap", [(0, _snabbdom.h)("h2.section_title", "COOKIES"), (0, _snabbdom.h)("div.cookie-info.panel", [clicker(ctrl), cookieCount(ctrl), cps(ctrl), countUp(ctrl)])]), buyResources(ctrl)]), inventory(ctrl)]);
 };
 var _default = exports.default = view;
-},{"snabbdom":"../node_modules/snabbdom/build/index.js","./svg":"svg.ts"}],"main.ts":[function(require,module,exports) {
+},{"snabbdom":"SjZr","./svg":"ROsf"}],"ZCfc":[function(require,module,exports) {
 "use strict";
 
 var _ctrl = _interopRequireDefault(require("./ctrl"));
@@ -1871,174 +1871,5 @@ function redraw() {
   vnode = patch(vnode, (0, _view.default)(ctrl));
 }
 ctrl.tick();
-},{"./ctrl":"ctrl.ts","./view":"view.ts","snabbdom":"../node_modules/snabbdom/build/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
-var global = arguments[3];
-var OVERLAY_ID = '__parcel__error__overlay__';
-var OldModule = module.bundle.Module;
-function Module(moduleName) {
-  OldModule.call(this, moduleName);
-  this.hot = {
-    data: module.bundle.hotData,
-    _acceptCallbacks: [],
-    _disposeCallbacks: [],
-    accept: function (fn) {
-      this._acceptCallbacks.push(fn || function () {});
-    },
-    dispose: function (fn) {
-      this._disposeCallbacks.push(fn);
-    }
-  };
-  module.bundle.hotData = null;
-}
-module.bundle.Module = Module;
-var checkedAssets, assetsToAccept;
-var parent = module.bundle.parent;
-if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
-  var hostname = "" || location.hostname;
-  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39085" + '/');
-  ws.onmessage = function (event) {
-    checkedAssets = {};
-    assetsToAccept = [];
-    var data = JSON.parse(event.data);
-    if (data.type === 'update') {
-      var handled = false;
-      data.assets.forEach(function (asset) {
-        if (!asset.isNew) {
-          var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
-          if (didAccept) {
-            handled = true;
-          }
-        }
-      });
-
-      // Enable HMR for CSS by default.
-      handled = handled || data.assets.every(function (asset) {
-        return asset.type === 'css' && asset.generated.js;
-      });
-      if (handled) {
-        console.clear();
-        data.assets.forEach(function (asset) {
-          hmrApply(global.parcelRequire, asset);
-        });
-        assetsToAccept.forEach(function (v) {
-          hmrAcceptRun(v[0], v[1]);
-        });
-      } else if (location.reload) {
-        // `location` global exists in a web worker context but lacks `.reload()` function.
-        location.reload();
-      }
-    }
-    if (data.type === 'reload') {
-      ws.close();
-      ws.onclose = function () {
-        location.reload();
-      };
-    }
-    if (data.type === 'error-resolved') {
-      console.log('[parcel] ✨ Error resolved');
-      removeErrorOverlay();
-    }
-    if (data.type === 'error') {
-      console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
-      removeErrorOverlay();
-      var overlay = createErrorOverlay(data);
-      document.body.appendChild(overlay);
-    }
-  };
-}
-function removeErrorOverlay() {
-  var overlay = document.getElementById(OVERLAY_ID);
-  if (overlay) {
-    overlay.remove();
-  }
-}
-function createErrorOverlay(data) {
-  var overlay = document.createElement('div');
-  overlay.id = OVERLAY_ID;
-
-  // html encode message and stack trace
-  var message = document.createElement('div');
-  var stackTrace = document.createElement('pre');
-  message.innerText = data.error.message;
-  stackTrace.innerText = data.error.stack;
-  overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
-  return overlay;
-}
-function getParents(bundle, id) {
-  var modules = bundle.modules;
-  if (!modules) {
-    return [];
-  }
-  var parents = [];
-  var k, d, dep;
-  for (k in modules) {
-    for (d in modules[k][1]) {
-      dep = modules[k][1][d];
-      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
-        parents.push(k);
-      }
-    }
-  }
-  if (bundle.parent) {
-    parents = parents.concat(getParents(bundle.parent, id));
-  }
-  return parents;
-}
-function hmrApply(bundle, asset) {
-  var modules = bundle.modules;
-  if (!modules) {
-    return;
-  }
-  if (modules[asset.id] || !bundle.parent) {
-    var fn = new Function('require', 'module', 'exports', asset.generated.js);
-    asset.isNew = !modules[asset.id];
-    modules[asset.id] = [fn, asset.deps];
-  } else if (bundle.parent) {
-    hmrApply(bundle.parent, asset);
-  }
-}
-function hmrAcceptCheck(bundle, id) {
-  var modules = bundle.modules;
-  if (!modules) {
-    return;
-  }
-  if (!modules[id] && bundle.parent) {
-    return hmrAcceptCheck(bundle.parent, id);
-  }
-  if (checkedAssets[id]) {
-    return;
-  }
-  checkedAssets[id] = true;
-  var cached = bundle.cache[id];
-  assetsToAccept.push([bundle, id]);
-  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
-    return true;
-  }
-  return getParents(global.parcelRequire, id).some(function (id) {
-    return hmrAcceptCheck(global.parcelRequire, id);
-  });
-}
-function hmrAcceptRun(bundle, id) {
-  var cached = bundle.cache[id];
-  bundle.hotData = {};
-  if (cached) {
-    cached.hot.data = bundle.hotData;
-  }
-  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
-    cached.hot._disposeCallbacks.forEach(function (cb) {
-      cb(bundle.hotData);
-    });
-  }
-  delete bundle.cache[id];
-  bundle(id);
-  cached = bundle.cache[id];
-  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
-    cached.hot._acceptCallbacks.forEach(function (cb) {
-      cb();
-    });
-    return true;
-  }
-}
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.ts"], null)
-//# sourceMappingURL=/main.c39d6dcf.js.map
+},{"./ctrl":"pZQw","./view":"wl4Y","snabbdom":"SjZr"}]},{},["ZCfc"], null)
+//# sourceMappingURL=/main.0f96334b.js.map
