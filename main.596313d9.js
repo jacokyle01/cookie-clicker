@@ -1872,4 +1872,3 @@ function redraw() {
 }
 ctrl.tick();
 },{"./ctrl":"pZQw","./view":"wl4Y","snabbdom":"SjZr"}]},{},["ZCfc"], null)
-//# sourceMappingURL=/main.0f96334b.js.map
